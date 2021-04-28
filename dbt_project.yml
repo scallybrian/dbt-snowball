@@ -33,8 +33,4 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   dbt_snowball:
-<<<<<<< HEAD
     - materialized: view
-=======
-      materialized: view
->>>>>>> 1e0657793c65b51bb3f25994deb5d5e2987bf793
