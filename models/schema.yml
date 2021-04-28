@@ -3,16 +3,18 @@ version: 2
 
 sources:
   - name: snowball
-    schema: PUBLIC
     database: SNOWBALL
-    tables:
-      - name: SNOWBALL_INVOICES
+    schema: '|
+      {%- if  target.name == "test" -%} TEST
+      {%- elif target.name == "prod"  -%} PROD
+      {%- else -%} invalid_database
+      {%- endif -%}'
 
 models:
-    - name: scaffold
+    - name: t_scaffold
       description: "Monthly scaffold between start/end invoice date"
       
-    - name: customer_revenue_sb
+    - name: fct_customer_revenue_sb
       description: "Rest of model"
       columns:
       - name: customer_id

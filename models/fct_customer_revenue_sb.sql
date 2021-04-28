@@ -1,6 +1,8 @@
+{{ config(materialized='table', transient=false) }}
+
 -- Customer churn dates
 WITH data_monthly AS (
-    SELECT * FROM {{ ref('scaffold') }}
+    SELECT * FROM {{ ref('t_scaffold') }}
 ),
 
  churn_dates
@@ -362,7 +364,7 @@ WITH data_monthly AS (
 				category as product_category,
 				market,
 				segment
-			FROM "SNOWBALL"."PUBLIC"."SNOWBALL_INVOICES"
+			FROM "SNOWBALL"."RAW"."RAW_INVOICES"
 			GROUP BY customer_id,
 			customer_name,
 			sub_category,

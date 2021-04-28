@@ -1,4 +1,4 @@
-{{ config(materialized='view', transient=false) }}
+{{ config(materialized='view', transient=true) }}
 
 WITH
 	-- Select intial fields to take forward
@@ -12,7 +12,7 @@ WITH
 			invoice_end,
 			SUM(sales) AS sales
 		FROM
-			{{ source('snowball', "SNOWBALL_INVOICES") }}
+			SNOWBALL.RAW.raw_invoices
 
 		GROUP BY customer_id,
 			sub_category,
